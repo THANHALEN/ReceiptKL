@@ -1,0 +1,37 @@
+{
+  "id": "./index.html",
+  "name": "Phiếu thu mua",
+  "short_name": "Thu mua",
+  "description": "Lập phiếu thu mua hàng hóa tại hiện trường, xuất PDF A5 và CSV.",
+  "lang": "vi",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone"
+  ],
+  "orientation": "portrait",
+  "theme_color": "#155b3a",
+  "background_color": "#f3f6f4",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
