@@ -101,6 +101,8 @@ button{border:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transpar
 const $=(q,r=document)=>r.querySelector(q), $$=(q,r=document)=>[...r.querySelectorAll(q)];
 const STORE='ptm-mobile-custom-keyboard-v1';
 const CLOUD_API='https://receiptkl-api.hocongthanh1987.workers.dev';
+const APP_VERSION='d1-full-data-v2';
+const DEVICE_KEY='receiptkl-device-id';
 /* Configuration is intentionally locked in this build; settings return in a future version. */
 const DEFAULT={
   buyer:{name:'CÔNG TY TNHH LA XANH',tax:'',address:''},
@@ -277,8 +279,36 @@ function download(file){const href=URL.createObjectURL(file),a=document.createEl
 function preview(){if(!valid())return;const canvas=receiptCanvas();S.canvases=[canvas];$('#previewPages').innerHTML='';$('#previewPages').appendChild(canvas);open('previewModal')}
 async function share(){if(!valid())return;const f=pdfFile();try{if(navigator.canShare?.({files:[f]})){await navigator.share({title:slipNo(),files:[f]});toast('Chọn Zalo để gửi PDF')}else{download(f);toast('PDF đã được tải để gửi Zalo')}}catch(err){if(err.name!=='AbortError'){download(f);toast('PDF đã được tải')}}}
 
+function deviceId(){
+  let id=localStorage.getItem(DEVICE_KEY);
+  if(!id){
+    id=`dev-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+    localStorage.setItem(DEVICE_KEY,id);
+  }
+  return id;
+}
+function linePayload(item,index){
+  const normalized={
+    stt:index+1,
+    item_id:item.id||'',
+    chu_hang:item.owner||'',
+    loai_hang:item.product||'',
+    loai_bao:item.bag||'',
+    so_bao:item.mode==='bulk'?0:n(item.bagCount),
+    trong_luong_kg:n(item.kg),
+    tap_chat:n(item.impurity),
+    don_gia:n(item.price),
+    thanh_tien:amount(item),
+    product_id:item.productId||'',
+    bag_id:item.bagId||'',
+    mode:item.mode||'',
+    bag_kg:n(item.bagKg)
+  };
+  return {...normalized,raw:{...item}};
+}
 function cloudPayload(){
-  return {
+  const items=S.slip.items.map(linePayload);
+  const receipt={
     so_phieu:slipNo(),
     ngay:S.slip.date,
     so_xe:S.slip.vehicle.plate||'',
@@ -287,18 +317,24 @@ function cloudPayload(){
     cuoc_xe:freight(),
     tong_hang:total(),
     tong_gom_cuoc:grandTotal(),
-    items:S.slip.items.map(item=>({
-      chu_hang:item.owner||'',
-      loai_hang:item.product||'',
-      loai_bao:item.bag||'',
-      so_bao:item.mode==='bulk'?0:n(item.bagCount),
-      trong_luong_kg:n(item.kg),
-      tap_chat:n(item.impurity),
-      don_gia:n(item.price),
-      thanh_tien:amount(item)
-    }))
+    so_dong_hang:items.length
+  };
+  return {
+    schema_version:'receiptkl.full.v2',
+    app_version:APP_VERSION,
+    device_id:deviceId(),
+    uploaded_at:new Date().toISOString(),
+    buyer:{...S.cfg.buyer},
+    settings:{packKg:S.cfg.packKg,products:S.cfg.products},
+    receipt,
+    vehicle:{...S.slip.vehicle,phone:phone(S.slip.vehicle.phone),freight:freight()},
+    items,
+    slip:{...S.slip,items:S.slip.items.map(item=>({...item}))},
+    // Flat fields are kept for backward compatibility with Worker v1.
+    ...receipt
   };
 }
+
 async function submitCloud(){
   if(!valid())return;
   const btn=$('#cloudSubmit');
