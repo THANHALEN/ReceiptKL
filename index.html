@@ -2,14 +2,16 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#155b3a">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="PTM">
-<meta name="mobile-web-app-capable" content="yes">
 <title>Phiếu thu mua</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ReceiptKL">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-192.png">
+
 <style>
 :root{
   --brand:#155b3a;--brand-deep:#0d4028;--brand-soft:#e9f4ec;
@@ -35,7 +37,7 @@ button{border:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transpar
 .choice-label{margin:12px 0 7px;color:#42574b;font-size:10px;font-weight:950;letter-spacing:.05em;text-transform:uppercase}.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.choice-grid.bags{grid-template-columns:repeat(3,minmax(0,1fr))}.choice{min-height:42px;padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:11px;font-weight:950}.choice.sel{border:2px solid var(--brand);background:var(--brand-soft);color:var(--brand)}.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}.tag{padding:4px 7px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:10px;font-weight:900}.number-list{display:grid;gap:8px}.number-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:11px}.number-row:focus-within{border:2px solid var(--brand);background:#fbfffc}.number-row.result{border-style:dashed;background:#f4f8f5}.number-label{font-size:10px;color:var(--muted);font-weight:900}.number-value{display:block;margin-top:3px;font-size:18px;font-weight:950;color:inherit}input.number-value{width:100%;border:0;outline:0;background:transparent;padding:0;font-family:inherit}.number-unit{font-size:10px;color:var(--muted);font-weight:900}.line-total{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding:10px;border-radius:11px;background:var(--brand-deep);color:#fff}.line-total span{font-size:10px;color:#d5e8dc;font-weight:900}.line-total b{font-size:18px}
 /* Picker / settings / preview */
 .pickcard{margin:10px 12px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;box-shadow:0 7px 18px rgba(18,64,39,.08)}.seqgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.seq{height:48px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:15px;font-weight:950}.seq.sel{border:2px solid var(--brand);background:var(--brand-soft);color:var(--brand)}.calhead{display:flex;align-items:center;justify-content:space-between}.calnav{width:34px;height:34px;border-radius:10px;background:#f2f6f3;color:var(--brand);font-size:20px}.calname{font-size:13px;font-weight:950}.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:12px}.wd{text-align:center;font-size:9px;color:var(--muted);font-weight:900}.day{height:34px;border-radius:9px;background:#fff;color:var(--ink);font-size:11px;font-weight:850}.day.today{box-shadow:inset 0 0 0 1px #a9d1b7}.day.sel{background:var(--brand);color:#fff}
-.full{min-height:0;flex:1;overflow:auto;padding:12px;background:var(--bg)}.section-label{margin:15px 2px 7px;font-size:10px;font-weight:950;color:#42574b;letter-spacing:.05em;text-transform:uppercase}.settingsbox{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff}.settingrow{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #edf2ee;background:#fff;color:var(--ink);text-align:left}.settingrow:last-child{border-bottom:0}.settinglabel{font-size:10px;color:var(--muted);font-weight:900}.settingvalue{margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:900}.setting-arrow{font-size:20px;color:#7c8b82}.previewbody{min-height:0;flex:1;overflow:auto;padding:12px;background:#eef2ef}.previewbody canvas{display:block;width:100%;height:auto;margin-bottom:12px;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,.13)}.previewactions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:9px 12px max(9px,env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}.toast{position:fixed;z-index:100;left:50%;bottom:18px;transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:.2s;min-width:170px;max-width:calc(100% - 34px);padding:10px 13px;border-radius:12px;background:#26382e;color:#fff;text-align:center;font-size:12px;font-weight:850}.toast.show{transform:translate(-50%,0);opacity:1}.hidden{display:none!important}
+.full{min-height:0;flex:1;overflow:auto;padding:12px;background:var(--bg)}.section-label{margin:15px 2px 7px;font-size:10px;font-weight:950;color:#42574b;letter-spacing:.05em;text-transform:uppercase}.settingsbox{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff}.settingrow{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #edf2ee;background:#fff;color:var(--ink);text-align:left}.settingrow:last-child{border-bottom:0}.settinglabel{font-size:10px;color:var(--muted);font-weight:900}.settingvalue{margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:900}.setting-arrow{font-size:20px;color:#7c8b82}.previewbody{min-height:0;flex:1;overflow:auto;padding:12px;background:#eef2ef}.previewbody canvas{display:block;width:100%;height:auto;margin-bottom:12px;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,.13)}.previewactions{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:9px 12px max(9px,env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}.toast{position:fixed;z-index:100;left:50%;bottom:18px;transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:.2s;min-width:170px;max-width:calc(100% - 34px);padding:10px 13px;border-radius:12px;background:#26382e;color:#fff;text-align:center;font-size:12px;font-weight:850}.toast.show{transform:translate(-50%,0);opacity:1}.hidden{display:none!important}
 @media(max-height:700px){.topapp{height:48px}.tab{height:29px}.caption{height:29px}.fieldbox{height:39px}.sheethead{height:48px}.sheetbody{padding-top:7px}.choice{min-height:37px}.btn{height:34px}.top-icon{width:34px;height:34px}.topapp-title{font-size:16px}}
 </style>
 </head>
@@ -91,13 +93,16 @@ button{border:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transpar
 <div class="modal" id="seqModal"><section class="sheet"><header class="sheethead"><button type="button" class="close" data-close="seqModal">×</button><h2>Chọn số thứ tự</h2><div></div></header><div class="pickcard"><b>Chọn từ 01 đến 09</b><div class="seqgrid" id="seqGrid"></div></div></section></div>
 <div class="modal" id="dateModal"><section class="sheet"><header class="sheethead"><button type="button" class="close" data-close="dateModal">×</button><h2>Chọn ngày giao dịch</h2><div></div></header><div class="pickcard" id="calendar"></div></section></div>
 <div class="modal" id="settingsModal"><section class="sheet"><header class="sheethead"><button type="button" class="close" data-close="settingsModal">×</button><h2>Cài đặt đơn vị thu mua</h2><div></div></header><div class="sheetbody"><div class="modalcard"><div class="modalmain" id="settingsBody"></div><div class="modalactions"><button type="button" class="btn secondary" data-close="settingsModal">Đóng</button><button type="button" class="btn primary" id="saveSettings">Lưu</button></div></div></div></section></div>
-<div class="modal" id="previewModal"><section class="sheet"><header class="sheethead"><button type="button" class="close" data-close="previewModal">×</button><h2>Xem trước A5</h2><div></div></header><div class="previewbody" id="previewPages"></div><div class="previewactions"><button type="button" class="btn secondary" id="editFromPreview">Sửa</button><button type="button" class="btn soft" id="savePdf">Lưu PDF</button><button type="button" class="btn soft" id="saveCsv">CSV</button><button type="button" class="btn primary" id="sharePdf">Gửi Zalo</button></div></section></div>
+<div class="modal" id="previewModal"><section class="sheet"><header class="sheethead"><button type="button" class="close" data-close="previewModal">×</button><h2>Xem trước A5</h2><div></div></header><div class="previewbody" id="previewPages"></div><div class="previewactions"><button type="button" class="btn secondary" id="editFromPreview">Sửa</button><button type="button" class="btn soft" id="savePdf">Lưu PDF</button><button type="button" class="btn soft" id="saveCsv">CSV</button><button type="button" class="btn primary" id="sharePdf">Gửi Zalo</button><button type="button" class="btn soft" id="cloudSubmit">☁ Cloud</button></div></section></div>
 <div class="toast" id="toast"></div>
 
 <script>
 (()=>{'use strict';
 const $=(q,r=document)=>r.querySelector(q), $$=(q,r=document)=>[...r.querySelectorAll(q)];
 const STORE='ptm-mobile-custom-keyboard-v1';
+const CLOUD_API='https://receiptkl-api.hocongthanh1987.workers.dev';
+const APP_VERSION='d1-full-data-v3-auto-update';
+const DEVICE_KEY='receiptkl-device-id';
 /* Configuration is intentionally locked in this build; settings return in a future version. */
 const DEFAULT={
   buyer:{name:'CÔNG TY TNHH LA XANH',tax:'',address:''},
@@ -273,8 +278,86 @@ function csvFile(){
 function download(file){const href=URL.createObjectURL(file),a=document.createElement('a');a.href=href;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(href),1600)}
 function preview(){if(!valid())return;const canvas=receiptCanvas();S.canvases=[canvas];$('#previewPages').innerHTML='';$('#previewPages').appendChild(canvas);open('previewModal')}
 async function share(){if(!valid())return;const f=pdfFile();try{if(navigator.canShare?.({files:[f]})){await navigator.share({title:slipNo(),files:[f]});toast('Chọn Zalo để gửi PDF')}else{download(f);toast('PDF đã được tải để gửi Zalo')}}catch(err){if(err.name!=='AbortError'){download(f);toast('PDF đã được tải')}}}
+
+function deviceId(){
+  let id=localStorage.getItem(DEVICE_KEY);
+  if(!id){
+    id=`dev-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+    localStorage.setItem(DEVICE_KEY,id);
+  }
+  return id;
+}
+function linePayload(item,index){
+  const normalized={
+    stt:index+1,
+    item_id:item.id||'',
+    chu_hang:item.owner||'',
+    loai_hang:item.product||'',
+    loai_bao:item.bag||'',
+    so_bao:item.mode==='bulk'?0:n(item.bagCount),
+    trong_luong_kg:n(item.kg),
+    tap_chat:n(item.impurity),
+    don_gia:n(item.price),
+    thanh_tien:amount(item),
+    product_id:item.productId||'',
+    bag_id:item.bagId||'',
+    mode:item.mode||'',
+    bag_kg:n(item.bagKg)
+  };
+  return {...normalized,raw:{...item}};
+}
+function cloudPayload(){
+  const items=S.slip.items.map(linePayload);
+  const receipt={
+    so_phieu:slipNo(),
+    ngay:S.slip.date,
+    so_xe:S.slip.vehicle.plate||'',
+    tai_xe:S.slip.vehicle.driver||'',
+    sdt:phone(S.slip.vehicle.phone)||'',
+    cuoc_xe:freight(),
+    tong_hang:total(),
+    tong_gom_cuoc:grandTotal(),
+    so_dong_hang:items.length
+  };
+  return {
+    schema_version:'receiptkl.full.v2',
+    app_version:APP_VERSION,
+    device_id:deviceId(),
+    uploaded_at:new Date().toISOString(),
+    buyer:{...S.cfg.buyer},
+    settings:{packKg:S.cfg.packKg,products:S.cfg.products},
+    receipt,
+    vehicle:{...S.slip.vehicle,phone:phone(S.slip.vehicle.phone),freight:freight()},
+    items,
+    slip:{...S.slip,items:S.slip.items.map(item=>({...item}))},
+    // Flat fields are kept for backward compatibility with Worker v1.
+    ...receipt
+  };
+}
+
+async function submitCloud(){
+  if(!valid())return;
+  const btn=$('#cloudSubmit');
+  const old=btn?btn.textContent:'';
+  try{
+    if(btn){btn.disabled=true;btn.textContent='Đang gửi...'}
+    const res=await fetch(`${CLOUD_API}/submit`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(cloudPayload())
+    });
+    const out=await res.json().catch(()=>({}));
+    if(!res.ok||!out.success)throw new Error(out.error||'Không gửi được cloud');
+    toast('Đã gửi cloud');
+  }catch(error){
+    toast('Lỗi cloud, thử lại');
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=old||'☁ Cloud'}
+  }
+}
+
 /* Events */
-$$('[data-tab]').forEach(btn=>btn.onclick=()=>go(btn.dataset.tab));$('#saveDraft').onclick=()=>{if(confirm('Xóa phiếu hiện tại và tạo phiếu mới?')){const nextSeq=S.slip.date===today()?n(S.slip.seq)+1:1;S.slip=fresh();S.slip.seq=nextSeq;save();render();toast('Đã tạo phiếu mới')}};$('#previewTop').onclick=preview;$('#settingsTop').onclick=openSettings;$('#saveSettings').onclick=()=>{save();close('settingsModal');toast('Đã lưu đơn vị thu mua')};$('#slipBtn').onclick=openSeq;$('#dateBtn').onclick=openCalendar;$('#addLine').onclick=()=>startLine();$('#editFromPreview').onclick=()=>{close('previewModal');go('ledger')};$('#savePdf').onclick=()=>{if(valid()){download(pdfFile());toast('Đã lưu PDF')}};$('#saveCsv').onclick=()=>{if(valid()){download(csvFile());toast('Đã lưu CSV')}};$('#sharePdf').onclick=share;$$('[data-close]').forEach(btn=>btn.onclick=()=>close(btn.dataset.close));
+$$('[data-tab]').forEach(btn=>btn.onclick=()=>go(btn.dataset.tab));$('#saveDraft').onclick=()=>{if(confirm('Xóa phiếu hiện tại và tạo phiếu mới?')){const nextSeq=S.slip.date===today()?n(S.slip.seq)+1:1;S.slip=fresh();S.slip.seq=nextSeq;save();render();toast('Đã tạo phiếu mới')}};$('#previewTop').onclick=preview;$('#settingsTop').onclick=openSettings;$('#saveSettings').onclick=()=>{save();close('settingsModal');toast('Đã lưu đơn vị thu mua')};$('#slipBtn').onclick=openSeq;$('#dateBtn').onclick=openCalendar;$('#addLine').onclick=()=>startLine();$('#editFromPreview').onclick=()=>{close('previewModal');go('ledger')};$('#savePdf').onclick=()=>{if(valid()){download(pdfFile());toast('Đã lưu PDF')}};$('#saveCsv').onclick=()=>{if(valid()){download(csvFile());toast('Đã lưu CSV')}};$('#sharePdf').onclick=share;$('#cloudSubmit').onclick=submitCloud;$$('[data-close]').forEach(btn=>btn.onclick=()=>close(btn.dataset.close));
 $('#plateText').oninput=e=>{S.slip.vehicle.plate=e.target.value;save()};
 $('#driverText').oninput=e=>{S.slip.vehicle.driver=e.target.value;save()};
 $('#phoneText').oninput=e=>{const v=e.target.value.replace(/\D/g,'').slice(0,10);S.slip.vehicle.phone=v;e.target.value=v;save()};
@@ -293,13 +376,25 @@ let viewportBase=innerHeight;const setHeight=()=>document.documentElement.style.
 })();
 </script>
 
+
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./service-worker.js').catch(function () {});
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('./sw.js');
+      await reg.update();
+      reg.addEventListener('updatefound', () => {
+        const worker = reg.installing;
+        if (!worker) return;
+        worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+            location.reload();
+          }
+        });
+      });
+    } catch (error) {}
   });
 }
 </script>
-
 </body>
 </html>
